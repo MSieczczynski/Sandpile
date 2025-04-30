@@ -71,4 +71,3 @@ def sim(start, end, Npoints):
         seconds = int(elapsed_time % 60)
         print(f"Czas działania dla siatki {sizes[j]}x{sizes[j]}: {minutes} min {seconds} s\n")
     return filenames, sizes
-
