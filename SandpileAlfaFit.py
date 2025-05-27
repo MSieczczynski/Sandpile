@@ -170,19 +170,19 @@ def alfaread():
         alfa.append(-slope)
 
     # ------------- Wykres lnx -------------
-    params, covariance  = curve_fit(log_func2,size, alfa)
-    x_fit = np.linspace(min(size), max(size), 100)
-    y_fit = log_func2(x_fit, *params)
-    print(params)
-    plt.scatter(size, alfa, color='red', label='log-log alfa')
-    plt.plot(x_fit, y_fit, color='blue', label='Dopasowanie log')
-    plt.legend()
-    plt.xscale('log')
-    plt.yscale('log')
-    plt.xlabel('Rozmiar siatki')
-    plt.ylabel('Alfa')
-    plt.title('Histogram log-log ')
-    plt.savefig('SandpileAlfa_Ln.png', dpi=300, bbox_inches='tight')
+    # params, covariance  = curve_fit(log_func2,size, alfa)
+    # x_fit = np.linspace(min(size), max(size), 100)
+    # y_fit = log_func2(x_fit, *params)
+    # print(params)
+    # plt.scatter(size, alfa, color='red', label='log-log alfa')
+    # plt.plot(x_fit, y_fit, color='blue', label='Dopasowanie log')
+    # plt.legend()
+    # plt.xscale('log')
+    # plt.yscale('log')
+    # plt.xlabel('Rozmiar siatki')
+    # plt.ylabel('Alfa')
+    # plt.title('Histogram log-log ')
+    # plt.savefig('SandpileAlfa_Ln.png', dpi=300, bbox_inches='tight')
     # ------------- // -------------
 
     # ------------- Wykres 1/lnx -------------
@@ -195,16 +195,38 @@ def alfaread():
     # #alfa.append(params[1])
     # #size.append(maxlog)
     # mscale.register_scale(InvLnScale)
-    # plt.scatter(size, alfa, color='red', label='alfa')
+    # plt.scatter(size, alfa, color='red', label='Alpha')
     # plt.plot(x_fit, y_fit, color='blue', label='Dopasowanie 1/lnx')
     # plt.legend()
     # plt.xscale('invln')
     # plt.xlabel('Rozmiar siatki 1/lnL')
     # plt.xlim(40,maxlog)
     # plt.ylim(1,1.4)
-    # plt.ylabel('Alfa')
-    # plt.title('Histogram alfa')
+    # plt.ylabel('Alpha')
+    # plt.title('Wykres współczynnika alpha z dopasowaniem i skalowaniem osi')
     # plt.savefig('SandpileAlfa_uLn.png', dpi=300, bbox_inches='tight')
     # ------------- // -------------
+
+    # ------------- Wykres 1/lnx bez zmiany osi -------------
+    params, covariance  = curve_fit(log_func,size, alfa)
+    print(params)
+    x_fit = np.linspace(min(size), max(size), 100)
+    #maxlog = np.float64(10**300)
+    #x_fit = np.append(x_fit, maxlog)
+    y_fit = log_func(x_fit, *params)
+    #alfa.append(params[1])
+    #size.append(maxlog)
+    mscale.register_scale(InvLnScale)
+    plt.scatter(size, alfa, color='red', label='Alpha')
+    plt.plot(x_fit, y_fit, color='blue', label='Dopasowanie 1/lnx')
+    plt.legend()
+    plt.xlabel('Rozmiar siatki L')
+    plt.ylabel('Alpha')
+    plt.title('Wykres współczynnika alpha z dopasowaniem bez skalowania osi')
+    plt.savefig('SandpileAlfa_uLn_woch.png', dpi=300, bbox_inches='tight')
+    # ------------- // -------------
+
+
+
 
 alfaread()
